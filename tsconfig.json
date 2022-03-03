@@ -1,0 +1,17 @@
+{   "compilerOptions": {
+    // 编译器假设运行代码的环境中有哪些API,注意这里说的是运行时，不是编译时
+    "lib": ["ES2015","DOM"],
+
+    // ts编译生成的js文件的存放路径
+    "outDir": "dist",
+    // 检查无效代码时尽量严格，该 选项强制所有代码都正确使用了类型，
+    "strict": true,
+    // 编译器把ts文件编译成哪个版本的JavaScript
+    "target": "ES2015",
+    // 编译器把代码编译成哪种模块系统 commonjs es2015 等等
+    "module": "CommonJS"
+},
+   
+    // TSC在哪个目录下寻找typescript文件
+    "include": ["src"]
+}
