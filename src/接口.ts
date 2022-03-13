@@ -42,15 +42,17 @@ interface Student extends Person {
  * 3.同一作用域下，多个同名接口将自动合并，同一作用域下，相同的类型别名将会导致编译时错误
  * */
 
+
 interface A {
   good: (x: number) => string;
   bad: (x: number) => string;
 }
 
 interface B extends A {
-  good: (x: string | number) => string;
+  good: (x: string | number) => string; // 类型不兼容
   bad: (x: string) => string;
 }
+
 
 /**
  * 知识点
