@@ -41,9 +41,9 @@ namespace TypeOperater {
   // Limitations 使用过程中的一些限制
   // Specifically, it’s only legal to use typeof on identifiers (i.e. variable names) or their properties.
   // 一般 typeof用在标识符，或者变量 或者他们的属性上，不能用在其他上面
+  //
 
   // Indexed Access Types 索引访问类型
-
   //We can use an indexed access type to look up a specific property on another type:
   // 我们可以通过索引访问符来访问一个属性的类型
 

@@ -38,6 +38,7 @@ namespace ParentAndChild {
     age: 25,
     hobbies: ["ball"],
   };
+
   // 这里 Child 比Person 更具体 所以 Child是Person的子类型
   // 注意这里用的是更具体，而不是更多
 

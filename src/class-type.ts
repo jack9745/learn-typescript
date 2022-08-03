@@ -1,5 +1,6 @@
 namespace ClassType {
   class A {
+    // 没有初始化为什么不报错
     x: any; // any 类型  严格模式下，不能有隐式的any类型，但是可以有显示any的类型
     y: any; // any 类型
   }
@@ -142,6 +143,7 @@ namespace ClassType {
   // Classes may extend from a base class. A derived class has all the properties and methods of its base class, and also define additional members.
 
   class Base {
+    // constructor(name: string) {}
     greet(name: string, age: number | string, hobbies: string[]) {
       console.log("Hello, world!");
     }

@@ -9,6 +9,8 @@ import "./advanced";
 import "./type-operater";
 import "./conditional";
 import "./declare";
+import "./Compatibility";
+import "./mixins";
 // import { Earth } from "../types/custom"; // 还可以引入类型声明文件 ？？
 // import * as SomeModule from "./SomeModule";
 import { fn } from "./SomeModule";
