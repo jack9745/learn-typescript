@@ -11,7 +11,8 @@
   },
   "types": "./index.d.ts",
   "scripts": {
-    "serve": "webpack-dev-server --config ./webpack.config.js"
+    "serve": "webpack-dev-server --config ./webpack.config.js",
+    "build": "webpack --config ./webpack.config.js"
   },
   "devDependencies": {
     "clean-webpack-plugin": "^4.0.0",

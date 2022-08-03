@@ -1,3 +1,11 @@
+import { isEmpty } from "lodash";
+// import { OldPeople } from "../index";
+let oldPerson: OldPeople = {
+  name: "huangtao",
+  age: 12,
+  rich: true,
+  weight: 120,
+};
 // Object Types 对象类型
 // 如果面试官问你 怎么理解typescript是结构化的类型系统 怎么回答？？？
 

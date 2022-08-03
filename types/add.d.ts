@@ -1,4 +1,4 @@
-// declare module "add" {
-//   function add(a: number, b: number): number;
-//   export default add;
-// }
+declare module "add" {
+  function add(a: number, b: number): number;
+  export default add;
+}

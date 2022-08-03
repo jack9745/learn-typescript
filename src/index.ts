@@ -5,8 +5,14 @@ import "./object-type";
 import "./class-type";
 import "./class-type-two";
 import "./parent-and-child";
+import "./advanced";
+import "./type-operater";
+import "./conditional";
+import "./declare";
+// import { Earth } from "../types/custom"; // 还可以引入类型声明文件 ？？
 // import * as SomeModule from "./SomeModule";
 import { fn } from "./SomeModule";
+// 配置allowJS true 下面的一行才不会报错
 // import add from "./test/add"; // 如果是个包的名字，而不是路径，是会从node_modules中查找的
 // console.log(add);
 fn();
@@ -101,7 +107,8 @@ const printName = ({ first, last }: { first: string; last?: string }) => {
 printName({ first: "huangtao" }); // undefined
 printName({ first: "huangtao", last: "jack" });
 
-class OldPeople {
+// 加个declare表示啥意思呢
+export class OldPeople {
   name: string;
   age: number;
   constructor(name: string, age: number) {
@@ -109,6 +116,10 @@ class OldPeople {
     this.name = name;
   }
 }
+let userB: OldPeople = {
+  name: "jack",
+  age: 10,
+};
 
 // 什么是类型断言 what how when
 // TypeScript only allows type assertions which convert to a more specific or less specific version of a type.
@@ -125,4 +136,12 @@ const getLength = (something: string | number): void => {
   // if (something as string) {
   //   return something.length;
   // }
+
+  // 验证声明文件中定义的全局类型
+  // class A extends Earth {
+  //   // constructor() {
+  //   //   super();
+  //   // }
+  // }
+  // let earth: Earth = new A();
 };
