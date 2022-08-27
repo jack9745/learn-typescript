@@ -1,11 +1,15 @@
-import { isEmpty } from "lodash";
-// import { OldPeople } from "../index";
+import { isEmpty } from 'lodash'
+
+// 在 types/lodash.d.ts 中有声明 OldPeople类
+
+// 如果在tsconfig.json中include配置中没有包含 types/lodash.d.ts文件，那么tsc编译器就不会找这个
+// 文件的中的声明，那么就会报错
 let oldPerson: OldPeople = {
-  name: "huangtao",
+  name: 'huangtao',
   age: 12,
   rich: true,
   weight: 120,
-};
+}
 // Object Types 对象类型
 // 如果面试官问你 怎么理解typescript是结构化的类型系统 怎么回答？？？
 
@@ -13,7 +17,7 @@ let oldPerson: OldPeople = {
 // As we’ve seen, they can be anonymous:
 // 直接写在注解里
 function greet(person: { name: string; age: number }) {
-  return "Hello " + person.name;
+  return 'Hello ' + person.name
 }
 
 // Optional Properties 可选属性修饰符
@@ -23,53 +27,53 @@ function greet(person: { name: string; age: number }) {
 // it better have a specific type.
 // 如果属性被设置，它最后有一个确定的类型
 interface PaintOptions {
-  shape: string;
-  xPos?: number;
-  yPos?: number;
+  shape: string
+  xPos?: number
+  yPos?: number
 }
 // 下面写法都是可以的
 let circle: PaintOptions = {
-  shape: "circle",
+  shape: 'circle',
   xPos: 90,
   yPos: undefined,
-};
+}
 let square: PaintOptions = {
-  shape: "square",
-};
+  shape: 'square',
+}
 
 // 因为xPos是可选属性，当我们读取它的值的时候，可能是undefined,所以下面写法挺好的
-circle.xPos?.toFixed();
+circle.xPos?.toFixed()
 
 // 可以为可选属性设置默认值
 function paintShape({ shape, xPos = 0, yPos = 0 }: PaintOptions) {
-  console.log("x coordinate at", xPos);
+  console.log('x coordinate at', xPos)
 
-  console.log("y coordinate at", yPos);
+  console.log('y coordinate at', yPos)
 
   // ...
 }
 
 // readonly Properties
 type UserInfo = {
-  readonly name: string;
+  readonly name: string
   readonly address: {
-    province: string;
-    city: string;
-  };
-  readonly friendList: string[];
-  hobby: ReadonlyArray<string>;
+    province: string
+    city: string
+  }
+  readonly friendList: string[]
+  hobby: ReadonlyArray<string>
   // 这里需要注意的是 friendList的修饰符是readonly 仅仅表示 不能重新赋值
   // hobby 是只读数组，数组上的改变数组的方法都不能用
-};
+}
 let user: UserInfo = {
-  name: "huangtao",
+  name: 'huangtao',
   address: {
-    province: "hubei",
-    city: "xiantao",
+    province: 'hubei',
+    city: 'xiantao',
   },
   friendList: [],
-  hobby: ["ball", "swim"],
-};
+  hobby: ['ball', 'swim'],
+}
 // 看到会编译检查错误
 // user.name = "jack huangtao";
 
@@ -77,9 +81,9 @@ let user: UserInfo = {
 // Using the readonly modifier doesn’t necessarily imply that a value is totally immutable
 
 // 这样是可以的
-user.address.province = "zhongguohubei";
+user.address.province = 'zhongguohubei'
 
-user.friendList.push("lily");
+user.friendList.push('lily')
 // user.friendList = []  // 这样又是不可以的
 
 // 提示没有push方法
@@ -101,25 +105,25 @@ user.friendList.push("lily");
 // Using mapping modifiers, you can remove readonly attributes.
 
 interface Person {
-  name: string;
-  age: number;
+  name: string
+  age: number
 }
 interface ReadonlyPerson {
-  readonly name: string;
-  readonly age: number;
+  readonly name: string
+  readonly age: number
 }
 
 let readonlyPeson: ReadonlyPerson = {
-  name: "jack huangtao",
+  name: 'jack huangtao',
   age: 18,
-};
+}
 // 依然是不可以的
 // readonlyPeson.name = "jack";
 
 //
-let writablePerson: Person = readonlyPeson;
+let writablePerson: Person = readonlyPeson
 // 依然是可以修改的
-writablePerson.name = "jack ";
+writablePerson.name = 'jack '
 
 //  Index Signatures 对象类型的索引签名
 // 写法都可以
@@ -142,10 +146,10 @@ writablePerson.name = "jack ";
 // 就是上面的第二句话
 
 interface Animal {
-  name: string;
+  name: string
 }
 interface Dog extends Animal {
-  color: string;
+  color: string
 }
 
 // 下面这样会报错，因为 Animal 类型是Dog类型的父类，而不是子类，刚好搞反了
@@ -156,20 +160,20 @@ interface Dog extends Animal {
 // }
 
 interface Bird {
-  [index: number]: Dog;
-  [index: string]: Animal;
+  [index: number]: Dog
+  [index: string]: Animal
 }
 type StringArray = {
-  [index: number]: string;
-  index: number;
-};
+  [index: number]: string
+  index: number
+}
 const myArray: StringArray = {
-  0: "huangtao",
+  0: 'huangtao',
   index: 90,
-};
-myArray[0];
+}
+myArray[0]
 
-myArray["0"];
+myArray['0']
 
 // While string index signatures are a powerful way to describe the “dictionary” pattern,
 //  they also enforce that all properties match their return type.
@@ -178,41 +182,41 @@ myArray["0"];
 //  name’s type does not match the string index’s type, and the type checker gives an error:
 
 interface NumberDictionary {
-  [index: string]: number;
+  [index: string]: number
 
-  length: number; // ok
+  length: number // ok
   // name: string;
 }
 
 // Extending Types
 // 类型别名也可以继承
 type BasicAddress = {
-  name?: string;
-  street: string;
-  city: string;
-  country: string;
-  postalCode: string;
-};
+  name?: string
+  street: string
+  city: string
+  country: string
+  postalCode: string
+}
 
 // 可以通过extend语句将其他的类型的属性赋值一份给到自己，然后再添加自己的属性
 interface AddressWithUnit extends BasicAddress {
-  unit: string;
+  unit: string
 }
 
 // interfaces can also extend from multiple types.
 interface Colorful {
-  color: string;
+  color: string
 }
 interface Circle {
-  radius: number;
+  radius: number
 }
 // 一个接口继承多个接口时，被继承的多个接口用逗号分割，
 interface ColorfulCircle extends Colorful, Circle {}
 
 let cc: ColorfulCircle = {
-  color: "red",
+  color: 'red',
   radius: 90,
-};
+}
 
 // Intersection Types 交叉类型
 /**
@@ -227,18 +231,18 @@ let cc: ColorfulCircle = {
 
 // Here, we’ve intersected Colorful and Circle to produce a new type
 //  that has all the members of Colorful and Circle.
-type ColorfulCircleOne = Colorful & Circle;
+type ColorfulCircleOne = Colorful & Circle
 
 let dd: ColorfulCircleOne = {
-  color: "blue",
+  color: 'blue',
   radius: 89,
-};
+}
 
 // 对象类型中的泛型
 // Instead, we can make a generic Box type which declares a type parameter.
 // 我们用interface声明了一个类型Box,它有一个类型参数是Type ==> a type parameter.
 interface Box<Type> {
-  content: Type;
+  content: Type
 }
 
 /**
@@ -249,8 +253,8 @@ interface Box<Type> {
  * we have to give a type argument in place of Type.*/
 
 let box: Box<string> = {
-  content: "hello,world",
-};
+  content: 'hello,world',
+}
 
 /**
  *
@@ -262,10 +266,10 @@ let box: Box<string> = {
 //会被提到
 
 interface Apple {
-  color: string;
+  color: string
 }
 
-type ColorApple = Box<Apple>;
+type ColorApple = Box<Apple>
 
 // type aliases can also be generic.
 
@@ -277,7 +281,7 @@ function doStuff(list: readonly string[]): ReadonlyArray<string> {
   // 赋值的时候不是不考虑修饰符吗
   // ????  看后面的注释，数组不一样
   // let innerList: Array<string> = list;
-  return [];
+  return []
 }
 
 function doStuffTwo(list: ReadonlyArray<string>) {
@@ -285,7 +289,7 @@ function doStuffTwo(list: ReadonlyArray<string>) {
   // list.pop("apple");
 }
 
-let list = doStuff(["huangtao"]);
+let list = doStuff(['huangtao'])
 // 悬浮上去可以看到 list 是只读数组 let list: readonly string[]
 
 // 下面会检查错误
@@ -299,42 +303,42 @@ let list = doStuff(["huangtao"]);
 // One last thing to note is that unlike the readonly property modifier, assignability isn’t bidirectional between regular Arrays and ReadonlyArrays.
 
 // 只读数组为什么可以被重新赋值 ？？？？
-let x: ReadonlyArray<string> = [];
-x = ["jack", "huangtao"];
-x = ["red", "blue"];
+let x: ReadonlyArray<string> = []
+x = ['jack', 'huangtao']
+x = ['red', 'blue']
 
-let y: string[] = [];
+let y: string[] = []
 // 类型 "readonly string[]" 为 "readonly"，不能分配给可变类型 "string[]"。ts(4104)
 // 只读类型的数组不能赋值给 可变类型的数组， 但是可变类型的数组可以赋值给只读类型的
 // y = x;
 // 下面是可以的
-x = y;
-x = ["jack", "huangtao"];
-x = ["red", "blue"];
+x = y
+x = ['jack', 'huangtao']
+x = ['red', 'blue']
 
-let point = [3, 4] as const;
+let point = [3, 4] as const
 // 不能将类型“4”分配给类型“3”。
 // point = [4, 5];
 
 // Tuple Types
 // 什么是元组类型 就是数组的另外一种类型，这种类型的数组，我们可以为每个元素声明不同的类型
 
-type StringNumberPair = [string, number];
+type StringNumberPair = [string, number]
 
 function doSomething(list: StringNumberPair) {
   // 还可以解构
-  const [inputString, hash] = list;
+  const [inputString, hash] = list
 }
 
 // Another thing you may be interested in is that tuples can have optional properties by writing out a question mark (? after an element’s type). Optional tuple elements can only come at the end, and also affect the type of length.
 
 // 元组类型中的元素有可选元素 ,可选元素只能放在最后
 // type Either2dOr3d = [number, number, number?];
-type CityInfo = [string, string?, number?];
+type CityInfo = [string, string?, number?]
 
 // 都是可以的
-let homeTown: CityInfo = ["hubei", "xiantao", 90];
-homeTown = ["hubei", "xiantao"];
+let homeTown: CityInfo = ['hubei', 'xiantao', 90]
+homeTown = ['hubei', 'xiantao']
 
 // function readButtonInput(...args: [string, number, ...boolean[]]) {
 //   const [name, version, ...input] = args;
@@ -351,6 +355,6 @@ function readButtonInput(name: string, version: number, ...input: boolean[]) {
 // Tuples can also have rest elements, which have to be an array/tuple type.
 
 // rest elements 可以在任何地方
-type StringNumberBooleans = [string, number, ...boolean[]];
-type StringBooleansNumber = [string, ...boolean[], number];
-type BooleansStringNumber = [...boolean[], string, number];
+type StringNumberBooleans = [string, number, ...boolean[]]
+type StringBooleansNumber = [string, ...boolean[], number]
+type BooleansStringNumber = [...boolean[], string, number]

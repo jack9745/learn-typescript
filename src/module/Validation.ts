@@ -1,7 +1,10 @@
 export interface StringValidator {
-  isAcceptable(s: string): boolean;
+  isAcceptable(s: string): boolean
 }
 
-// export namespace  {
-//   interface Person {}
-// }
+type Person = {
+  name: string
+  age: number
+}
+
+export default Person

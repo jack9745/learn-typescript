@@ -1,31 +1,32 @@
-const htmlWebpackPlugin = require("html-webpack-plugin");
-const cleanWebpackPlugin = require("clean-webpack-plugin");
-const path = require("path");
+const htmlWebpackPlugin = require('html-webpack-plugin')
+const cleanWebpackPlugin = require('clean-webpack-plugin')
+const path = require('path')
 module.exports = {
-  mode: "development",
-  entry: "./src/index.ts",
+  mode: 'development',
+  entry: './src/index.ts',
   output: {
-    filename: "main.js",
+    filename: 'main.js',
   },
   resolve: {
-    extensions: [".js", ".ts", ".tsx"],
+    extensions: ['.js', '.ts', '.tsx'],
+    fallback: { url: false },
   },
   module: {
     rules: [
       {
         test: /\.tsx?$/,
-        use: "ts-loader",
+        use: 'ts-loader',
         // 要绝对路径
-        include: path.resolve(__dirname, "./src"),
+        include: path.resolve(__dirname, './src'),
         // 要绝对路径
-        exclude: path.resolve(__dirname, "./node_modules"),
+        exclude: path.resolve(__dirname, './node_modules'),
       },
     ],
   },
 
   plugins: [
     new htmlWebpackPlugin({
-      template: "./index.html",
+      template: './index.html',
     }),
   ],
-};
+}

@@ -4,17 +4,62 @@
     "lib": ["ES2015", "DOM"],
     "allowJs": true,
     // ts编译生成的js文件的存放路径
-    "outDir": "dist",
+    "outDir": "ts-dist",
     // 检查无效代码时尽量严格，该 选项强制所有代码都正确使用了类型，
     "strict": true,
+
+    // 函数的类型
     "strictFunctionTypes": true,
     // 编译器把ts文件编译成哪个版本的JavaScript
     "target": "ES2015",
     // 编译器把代码编译成哪种模块系统 commonjs es2015 等等
-    "module": "CommonJS"
-    // "strictPropertyInitialization": true
+    "module": "CommonJS",
+
+    // 类中实例属性初始化
+    "strictPropertyInitialization": true
   },
 
+  // include 表示啥意思
   // TSC在哪个目录下寻找typescript文件
-  "include": ["src", "index.d.ts", "types", "test"]
+
+  // 网上是这样说的，指定需要编译处理的文件列表， 我觉得是有道理的
+  // 注意 include 和exclude 还有files 三个字段的接受的值是类型是Array
+  // "include": ["src/**/*", "src/**/*.text", "types"]
+  // include中的重要规则  支持通配符规则
+
+  // include and exclude support wildcard characters to make glob patterns:
+
+  //* matches zero or more characters (excluding directory separators)
+  //? matches any one character (excluding directory separators)
+  //  **/ matches any directory nested to any level
+  //  **/ 可以匹配任何目录
+  //If a glob pattern doesn’t include a file extension,
+  // then only files with supported extensions are included (e.g. .ts, .tsx, and .d.ts by default,
+  // with .js and .jsx if allowJs is set to true).
+  // 如果通配符不包括文件的扩展名，那么将只支持  .ts,.tsx,.d.ts 文件的后缀名称
+  // 为什么不编译 src/test/abc.text文件呢 ？？
+  "include": ["src/**/*", "types", "src/**/*.text"],
+
+  // "include": ["src", "types", "test"]
+
+  // files
+  "files": ["index.d.ts"],
+  // 用来指定需要编译的文件列表（注意，只能是文件，不能是文件夹）
+  // include 和 files 可以联合起来用
+
+  // 怎么没有排出这个文件呢 "src/basic-type.ts" ,原因是index.ts 引入了这个文件，所以排出无效 ,排除了 index.ts，打包出来的文件中就没有index.ts
+
+  // exclude中的规则
+  // Specifies an array of filenames or patterns that should be skipped when resolving include.
+  // 只是去除 include中的文件
+  // Important: exclude only changes which files are included as a result of the include setting.
+
+  // A file specified by exclude can still become part of your codebase due to an import statement in your code, a types inclusion, a /// <reference directive, or being specified in the files list.
+  // 上面这几种情况是不会被排除的
+  "exclude": [
+    // "src/index.ts",
+    // "src/test/abc.text",
+    // "src/basic-type.ts",
+    // "src/class-type.ts"
+  ]
 }

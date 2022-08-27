@@ -9,9 +9,9 @@
 // 经过测试发现，我的理解 如果带有export 那么就要 import {}，
 // 如果没有 export 就不需要 import {} 就可以直接用
 declare class OldPeople {
-  name: string;
-  age: number;
-  rich: boolean;
-  weight: number;
-  constructor(name: string, age: number);
+  name: string
+  age: number
+  rich: boolean
+  weight: number
+  constructor(name: string, age: number)
 }

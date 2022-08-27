@@ -1,47 +1,41 @@
-declare module "coustomURL" {
+declare module 'coustomURL' {
   export interface Url {
-    protocol?: string;
-    hostname?: string;
-    pathname?: string;
+    protocol?: string
+    hostname?: string
+    pathname?: string
   }
 }
 
-declare var myLib: {
-  makeGreeting(s: string): string;
-  numberOfGreetings: number;
-};
-
-export as namespace superGreeter;
+export as namespace superGreeter
 // export = Greeter;
 
 declare class Greeter {
-  constructor(customGreeting?: string);
-  greet: void;
-  myMethod(opts: MyClass.MyClassMethodOptions): number;
+  constructor(customGreeting?: string)
+  greet: void
+  myMethod(opts: MyClass.MyClassMethodOptions): number
 }
 
 declare namespace MyClass {
   export interface MyClassMethodOptions {
-    width?: number;
-    height?: number;
+    width?: number
+    height?: number
   }
 }
-
 // 为什么要定义声明文件
 
-//我的理解就是声明文件预定义一些变量和函数的类型定义，如C,C++的.h 头文件
+//我的理解就是声明文件预定义一些变量和函数的类型，如C,C++的.h 头文件
 // 在typescript中 以.d.ts为扩展名的的文件是声明文件
 // 然后在编译的时候不会报错
 
 // 声明全局变量
 // 一般使用declare关键字来定义全局变量或者全局类型，interface 和type 不需要添加declare关键字
 
-declare const LIMIT_SIZE = 10;
+declare const LIMIT_SIZE = 10
 
 // 声明一个全局类shixing
 export class Earth {
-  private weight: number;
-  private rotate(): void;
+  private weight: number
+  private rotate(): void
 }
 
 // 什么时候需要使用三斜线语法
